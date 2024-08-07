@@ -11,7 +11,7 @@ const GenerateDocument = (data) => {
 
     loadFile(
       data.fullSubjectName === "Computer Graphics"
-        ? "/template2.docx"
+        ? "/cgFrontpage.docx"
         : "/template2.docx",
       function (error, content) {
         if (error) {
@@ -43,13 +43,14 @@ const GenerateDocument = (data) => {
         if (
           blob.size > 0 &&
           blob.type ===
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         ) {
           const timestamp = Date.now();
           const docxFileName = `${getFirstName(
             data.name
-          ).toLowerCase()}_${data.subject.toUpperCase()}_${data.labnumber
-            }_${timestamp}.docx`;
+          ).toLowerCase()}_${data.subject.toUpperCase()}_${
+            data.labnumber
+          }_${timestamp}.docx`;
           const capitalizedFileName =
             docxFileName.charAt(0).toUpperCase() + docxFileName.slice(1);
 
@@ -61,12 +62,11 @@ const GenerateDocument = (data) => {
       }
     );
 
-    // Helper function to get the first name
-    const getFirstName = (fullName) => {
-      const parts = fullName.split(" ");
-      return parts.length > 0 ? parts[1] : fullName;
-    };
-  })
-};
+  // Helper function to get the first name
+  const getFirstName = (fullName) => {
+    const parts = fullName.split(" ");
+    return parts.length > 0 ? parts[1] : fullName;
+  };
+  })};
 
 export default GenerateDocument;
